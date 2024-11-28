@@ -42,12 +42,8 @@ app.use((err, req, res, next) => {
 });
 
 
-app.use("/public/uploads", express.static("public/uploads"));
+app.use("/app/uploads", express.static("public/uploads"));
 app.use(express.static(path.join(__dirname, "/client/dist")))
-
-app.get("/public/uploads/*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
-})
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
