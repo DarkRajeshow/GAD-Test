@@ -1,2 +1,2 @@
-const filePath = import.meta.env.VITE_REACT_APP_SERVER_URL + "/app/uploads"
+const filePath = "/api/uploads/"
 export default filePath;
