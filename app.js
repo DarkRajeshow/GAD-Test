@@ -22,7 +22,6 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
-app.use("/public/uploads", express.static("public/uploads"));
 
 // Routes
 app.use("/api/user", UserRoutes);
@@ -43,7 +42,12 @@ app.use((err, req, res, next) => {
 });
 
 
+app.use("/public/uploads", express.static("public/uploads"));
 app.use(express.static(path.join(__dirname, "/client/dist")))
+
+app.get("/public/uploads/*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
+})
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "dist", "index.html"))
